@@ -10,4 +10,6 @@
 
 @interface ExampleViewController : UIViewController
 
+@property (nonatomic) NSInteger exampleNumber;
+
 @end

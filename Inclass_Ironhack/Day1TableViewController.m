@@ -7,6 +7,9 @@
 //
 
 #import "Day1TableViewController.h"
+#import "ExampleViewController.h"
+
+#define degreeToRadius(x) (M_PI * X / 180.0)
 
 @interface Day1TableViewController ()
 
@@ -24,14 +27,19 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    
+    NSIndexPath *index = [self.tableView indexPathForCell:sender];
+    
+    ExampleViewController *vc = [segue destinationViewController];
+    
+    vc.exampleNumber = index.row;
+    
+    vc.title = [sender textLabel].text;
+    
+    
+    
 }
-*/
-
 @end

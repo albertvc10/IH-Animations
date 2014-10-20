@@ -10,4 +10,9 @@
 
 @interface MyCustomButton : UIView
 
+@property (nonatomic, strong) UIColor *buttonBackroundColor;
+@property (nonatomic, strong) NSString *buttonTitle;
+
+-(instancetype)initWithFrame:(CGRect)frame backGroundColor:(UIColor *)theBackgroundColor title:(NSString *)theTitle;
+
 @end

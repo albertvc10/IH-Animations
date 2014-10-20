@@ -8,14 +8,49 @@
 
 #import "DragSquareView.h"
 
+@interface DragSquareView ()
+
+@property (nonatomic, strong) UIView *movingView;
+
+@end
+
 @implementation DragSquareView
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
-}
-*/
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    
+    //remove all subviews created before
+    
+    UITouch *touch = [touches anyObject];
+    CGPoint touchPoint = [touch locationInView:self];
+    
+    for (UIView *v in [self subviews]) {
+        if (CGRectContainsPoint(v.frame, touchPoint)) {
+            self.movingView = v;
+        }
+    }
+    if (!self.movingView) {
+        self.movingView = [[UIView alloc]init];
+        [self.movingView setBackgroundColor:[UIColor redColor]];
+        self.movingView.frame = CGRectMake(touchPoint.x, touchPoint.y, 40, 40);
+        [self addSubview:self.movingView];
 
+    }
+    
+    
+}
+
+
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+    
+    UITouch *touch = [touches anyObject];
+    self.movingView.center = [touch locationInView:self];
+
+    
+}
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+    
+    self.movingView = nil;
+    
+}
 @end

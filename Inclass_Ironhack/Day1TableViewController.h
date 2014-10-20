@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface Day1TableViewController : UIViewController
+@interface Day1TableViewController : UITableViewController
 
 @end

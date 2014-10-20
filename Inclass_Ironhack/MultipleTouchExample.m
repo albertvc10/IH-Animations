@@ -10,12 +10,24 @@
 
 @implementation MultipleTouchExample
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    
+    //remove all subviews created before
+    
+    for (UIView *v in [self subviews]) {
+        [v removeFromSuperview];
+    }
+    
+    [touches enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {
+        UITouch *touch = obj;
+        CGPoint touchPoint = [touch locationInView:self];
+        
+        UIView *touchView = [[UIView alloc]init];
+        [touchView setBackgroundColor:[UIColor redColor]];
+        touchView.frame = CGRectMake(touchPoint.x, touchPoint.y, 40, 40);
+        [self addSubview:touchView];
+    }];
+    
 }
-*/
 
 @end
